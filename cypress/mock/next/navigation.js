@@ -32,7 +32,7 @@ const createRouter = (params) => ({
 
 const MockRouter = ({ children, ...props }) => {
   const router = createRouter(props)
-  console.log('children', children)
+
   return (
     <AppRouterContext.Provider value={router}>
       {children}
