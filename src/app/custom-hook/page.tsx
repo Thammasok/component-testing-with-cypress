@@ -3,6 +3,6 @@
 import React from 'react'
 import View from './view'
 
-export default function WithRedux() {
+export default function CustomHookPage() {
   return <View />
 }

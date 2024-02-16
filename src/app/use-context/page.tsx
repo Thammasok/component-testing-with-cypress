@@ -3,6 +3,6 @@
 import React from 'react'
 import View from './view'
 
-export default function NextRouterPage() {
+export default function UseContextPage() {
   return <View />
 }
