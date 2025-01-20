@@ -36,21 +36,51 @@
 //   }
 // }
 
+// React Testing Library
+// https://github.com/testing-library/cypress-testing-library
+// import '@testing-library/cypress/add-commands'
 
-// declare global {
-//   // eslint-disable-next-line @typescript-eslint/no-namespace
-//   namespace Cypress {
-//     interface Chainable {
-//       /**
-//        * Mounts a React node
-//        * @param component React Node to mount
-//        * @param options Additional options to pass into mount
-//        */
-//       // 1. create new mount command
-//       mountWithRouter(
-//         component: React.ReactNode,
-//         options?: OptionType
-//       ): Cypress.Chainable<MountReturn>
-//     }
-//   }
-// }
+import { MountOptions, MountReturn, mount } from 'cypress/react18'
+import React from 'react'
+
+import '@/app/globals.css'
+
+// create type
+type OptionType = MountOptions & {
+  locale?: string
+}
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      /**
+       * Mounts a React node
+       * @param component React Node to mount
+       * @param options Additional options to pass into mount
+       */
+      // 1. create new mount command
+      mount(
+        component: React.ReactNode,
+        options?: OptionType
+      ): Cypress.Chainable<MountReturn>
+    }
+  }
+}
+
+Cypress.Commands.add(
+  'mount',
+  (component: React.ReactNode, options?: OptionType) => {
+    const wrapped = (
+      <div
+        style={{
+          marginTop: '20px',
+          marginLeft: '20px'
+        }}
+      >
+        {component}
+      </div>
+    )
+
+    return mount(wrapped, options)
+  }
+)
