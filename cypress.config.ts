@@ -13,13 +13,15 @@ export default defineConfig({
   //   html: true,
   //   quiet: true,
   // },
-  reporter: 'mocha-junit-reporter',
+  reporter: "mocha-junit-reporter",
+
   reporterOptions: {
     testsuitesTitle: true,
-    suiteTitleSeparatedBy: '.',
-    mochaFile: './reports/[suiteFilename]-report.xml',
+    suiteTitleSeparatedBy: ".",
+    mochaFile: "./reports/[suiteFilename]-report.xml",
     useFullSuiteTitle: true,
   },
+
   component: {
     devServer: {
       framework: "next",
@@ -34,6 +36,12 @@ export default defineConfig({
           ),
         ],
       },
+    },
+  },
+
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
     },
   },
 });
